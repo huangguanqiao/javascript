@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html>
+    <head><title>4 Ways to Define Objects in Javascript</title>
+
+        <!-- 
+            Outline:
+            ------------------------------------------------------
+            1. JavaScript keyword new
+            2. Object literals
+            3. Using a function
+                3.1 - Internal method
+                3.2 - External method
+                3.3 - Prototype method
+            4. Singleton
+            5. Object.create() - Update: (9.8.19), Clever Techie
+            ------------------------------------------------------
+        -->
+        <!--
+            Syntax summary:
+            ------------------------------------------------------
+            let objectName = new Object();
+            objectName.propertyName = "value";
+            objectName.methodName = function() {}
+            let objectName = {};
+            propertyName: "value", 
+            "multiword propertyName": "value",
+            methodName: function() {},
+            function objectName () { }
+            this.propertyName = "value"; 
+            this.methodName = function() {};
+            this.methodName = externalMethodName;
+            objectName.prototype.methodName = function () {}
+            let objectName = new function() { }
+            let objectName = Object.create(null);
+            let objectName = Object.create(objectPrototype);
+            ------------------------------------------------------
+        -->
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+<body>
+    <script>
+        
+        //1. Javascript keyword new
+
+        //Keyword new instantiates new Object
+        //Syntax: let objectName = new Object();
+        let Book2 = new Object(); 
+        
+        //Declare properties:
+        //Syntax: objectName.propertyName = "value";
+        Book2.title = "The Healing Power of Breath";
+        Book2.price = 15.99;
+        Book2.author = "Richard P. Brown";
+        
+        //Declare method:
+        //Syntax: objectName.methodName = function() {}
+        Book2.getInfo = function() {
+            //Keyword "this" refers to Book2 object
+            return this.title + " - " + "$" + this.price + " US dollars " 
+            + "written by " + this.author;
+        }
+
+        /*
+            Console:
+            -------------------------------------------
+            >> Book2
+            >> Book2.getInfo()
+            >> Book2.title
+            >> Book2.price
+            >> Book2.author
+            >> Book2.price = 20
+            >> Book2.title = "Womb Awakening"
+            -------------------------------------------
+        */
+        
+        //2. Object literals
+
+        //Creates object instance immediately, no need to instantiate with keyword new
+        //Short way of creating objects in Javascript
+        //Syntax: let objectName = {};
+        let Book3 = 
+        {
+            //Syntax: propertyName: "value", 
+            title: "The Healing Power of the Breath",
+            author: ["Richard P. Brown", "Patricia L. Berbarg"],
+            price: 15.99,
+            description: "Breathing techniques to improve health and mental well-being.",
+            
+            //Multi-word property name, property name is in "quotes"
+            //Syntax: "multiword propertyName": "value",
+            "publication date": "August 15, 2017",
+            
+            //Method
+            //Syntax: methodName: function() {},
+            getInfo: function() {
+                return this.title + " - " + "$" + this.price + 
+                " US dollars " + "written by " + this.author;
+            }, //Trailing or hanging comma
+        };
+        
+        /*
+            Console:
+            -------------------------------------------
+            >> Book3
+            >> Book3.title
+            >> Book3.getInfo()
+            >> Book3["publication date"]
+            >> Book3["publication date"] = "July 12, 2018"
+            -------------------------------------------
+        */
+
+       //3. Using a Function
+
+       /*
+        -Constructor function - build/create properties and methods inside this function
+        -Internal method - created inside of the constructor function
+        -External method - method assigned to external function, outside 
+         constructor function
+        -Prototype method - method assigned to an object with prototype method
+       */
+
+       //Syntax: function objectName () { }
+       function Book4 ( title ) { 
+            
+            //Properties:
+            //Syntax: this.propertyName = "value"; 
+            this.title = title;
+            this.author = ["Azra Bertrand","Seren Bertrand"];
+            this.description = "Rediscover the lost ancient mystery teachings of the Cosmic Womb";
+            this.price = 21.50;
+
+            //3.1 - Internal method
+            //Recreated everytime you instantiate the object, taking up resources
+            //Syntax: this.methodName = function() {};
+            this.getInfoInternal = function () { 
+                return "Internal method: " + this.title + " - " + "$" + 
+                this.price + " by " + this.author;
+            };
+           
+           //3.2 - External method
+           /*Assigning external function getBookInfo to getInfoExternal method
+             May conflict with same name functions called getBookInfo() */
+           //Syntax: this.methodName = externalMethodName;
+           this.getInfoExternal = getBookInfo;
+                 
+       }
+
+       //3.2 - External method 
+       //Declaring a function outside of the myBook object:
+       function getBookInfo() {
+            return "External method: " + this.title + " - " + "$" +
+            this.price + " US dollars " + "written by " + this.author;  
+       }
+
+       //3.3 - Prototype method
+       //Best way to assign a method to an object
+       //Syntax: objectName.prototype.methodName = function () {}
+       Book4.prototype.getInfoPrototype = function () { 
+           return "Prototype method: " + this.title + " - " + "$" +
+           this.price + " by " + this.author;
+       }
+
+       /*
+            Console:
+            -------------------------------------------
+            >> let myBook = new Book4("Cosmic Womb");
+            >> myBook
+            >> myBook.title
+            >> myBook.getInfoInternal()
+            >> myBook.getInfoExternal()
+            >> myBook.getInfoPrototype()
+            -------------------------------------------
+        */
+
+      //4. Singleton 
+      //Declare and instantiate the object using a function
+      //Syntax: let objectName = new function() { }
+      let Book5 = new function () 
+      {
+          this.title = "Womb Awakening";
+          this.price = 15.99;
+          this.author = "Azra Bertrand";
+          this.getInfo = function () {
+          return this.title + " - " + "$" + this.price + " by " + this.author;    
+        };
+      }
+
+        /*
+            Console:
+            -------------------------------------------
+            >> Book5
+            >> Book5.title
+            >> Book5.author
+            >> Book5.getInfo()
+            -------------------------------------------
+        */
+
+      //5. Object.create() - Update: (9.8.19), Clever Techie
+
+      //Creates new empty object
+      //Syntax: let objectName = Object.create(null);
+      let Book6 = Object.create(null);
+      Book6.title = "Womb Awakening";
+
+      /*
+        Creates new object based on existing object prototype (existin object)
+        The new object Book7 is created based on object prototype Book5
+        Book7 inherits all properties and methods of prototype object Book5
+      */
+      //Syntax: let objectName = Object.create(objectPrototype);
+      let Book7 = Object.create(Book5);
+
+      //Inherited properties can be overwritten
+      //The new title property "Cosmic Womb" will only apply to Book7 object
+      Book7.title = "Cosmic Womb";
+
+       /*
+            Console:
+            -------------------------------------------
+            >> Book5.title
+            >> Book7.title
+            >> Book7.getInfo()
+            >> Book5.getInfo()
+            -------------------------------------------
+        */
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>Javascript Loops</title>
+
+        <!--
+            Outline:
+            --------------------------------------
+            1. for statement loop
+            2. Looping through arrays
+                2.1 - for statement loop
+                2.2 - while statement loop
+                2.3 - do....while statement loop
+                2.4 - for....in statement loop  
+        -->
+
+       <!--
+            Syntax summary:
+            --------------------------------------
+            for (i=0;i<10;i++){ }
+            for (key=0;key<arrayName.length;key++) { }
+            while (arrayName[key]){ key++; }
+            do { key++; while(arrayName[key]) }
+            for (key in arrayName) { }
+        -->
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+
+            //1. for statement loop
+            /*
+                Declare i variable and set it's value to 0
+                Keep repeating the loop until the condition expression evaluates to false -
+                until i is no longer less than 10
+                Keep increasing i variable counter by 1 with ++ increment
+            */
+            for (i=0;i<10;i++){
+                console.log(i);
+            }
+
+            //2. Looping through arrays
+            
+            let animals = ['Wolf','Cat','Cow','Eagle','Condor','Snake'];
+
+            //2.1 for statement loop
+            for (key=0;key<animals.length;key++){
+                console.log(animals[key]);
+            }
+            
+            let keywords = ['Harmony','Love','Womb','Witch','Nature'];
+            key = 0;
+            
+            //2.2 - while statement loop
+            while (keywords[key]){
+                console.log(keywords[key]);
+                key++;
+            }
+            
+            let books = ['Womb Awakening','The Humming Effect','Waking the Tiger'];
+            key = 0;
+            
+            //2.3 - do....while statement loop
+            do {
+              console.log(books[key]);
+              key++;
+            } while (books[key]);
+
+            //2.4 - for....in statement loop  
+            for (key in books){
+                console.log(books[key]);
+            }
+            
+        </script>
+    </body>
+</html>

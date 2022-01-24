@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Javascript Functions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            let lastname = 'techie'; //global scope
+            function multiply(one=9,two=10){
+                alert(one*two);
+                //return one*two;
+            }
+            //let total = multiply(5,5);
+            //alert(total);
+            function hello(){
+                let name = 'clever'; //local scope
+                alert(name + ' ' + lastname);
+            }
+            multiply(5,5); //parameters have priority over default ones specified in function declaration
+        </script>
+    </body>
+</html>

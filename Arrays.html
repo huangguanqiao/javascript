@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript Arrays</title>
+
+        
+       
+
+        <!--
+            Outline:
+            ------------------------------------------------------
+            1. Declaring Arrays
+                1.1 - Numeric Arrays
+                1.2 - Associative Arrays
+                1.3 - Array Objects     
+            2. Accessing Array keys and values
+            3. Looping through Arrays
+                3.1 for....loop
+                3.2 for....in loop
+            ------------------------------------------------------
+        -->
+
+       <!--
+            Syntax summary:
+            ------------------------------------------------------
+            let arrayName = [];
+            let arrayName = new Array();
+            let arrayName = [value1,value2,value3,....];
+            let arrayName = new Array(value1,value2,value3,....);
+            arrayName.length;
+            arrayName['keyName'] = 'value';
+            let objectName = { 'key' : 'value', };
+            objectName.propertyName = 'value';
+            objectName['propertyName'] = 'value';
+            Object.keys(objectName).length;
+            for( i=0; i < arrayName.length; i++ ){ }
+            for(let i in arrayName){ }
+            ------------------------------------------------------
+
+        -->
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script src="../Library/functions.js"></script>
+        <script>
+
+        //1. Declaring Arrays
+
+        //Two ways of declaring/creating empty arrays
+        //Syntax: let arrayName = [];
+        let empty = [];
+
+        //Syntax: let arrayName = new Array();
+        let newEmpty = new Array();
+
+        //1.1 - Numeric Arrays
+
+        /*
+            Numeric arrays can only have numbers as keys
+            Array keys start with 0 and are automatically 
+            created for each value in the array
+            Keys are unique identifiers for array values
+        */
+
+        //Create array called list and fill it with five values
+        //Syntax: let arrayName = [value1,value2,value3,....];
+        let list = [1,2,3,4,5];
+
+        //Numeric arrays can store any value data types
+        //Syntax: let arrayName = new Array(value1,value2,value3,....);
+        let mixed = new Array("The Mass Effect 3", 15.99, 2012, null, true);
+
+        //To get the total number of values inside of an array, use method length:
+        //arrayName.length
+        
+        /*
+            Console:
+            -------------------------------------------
+            //On the left hand side of a colon is the array key
+            //On the right hand side of a colon is the array value
+            >> list
+            Output:
+            0: 1
+            1: 2
+            2: 3
+            3: 4
+            4: 5
+            length: 5 
+            
+            /*
+                Length refers to array value count, starting from 1
+                Keys start their count from 0
+                We can use method "length" to get the length of the array
+            */
+        /*
+            //Syntax: arrayName.length;
+            >> list.length 
+            Output: 5
+
+            >> mixed
+            Output:
+            0: "The Mass Effect 3"
+            1: 15.99
+            2: 2012
+            3: null
+            4: true
+            length: 5
+            -------------------------------------------
+        */
+
+        //1.2 - Associative Arrays
+        //Syntax: arrayName['keyName'] = 'value';
+        
+        let elements = [];
+        elements['Water'] = 'Emotion';
+        elements['Fire'] = 'Force';
+        elements['Earth'] = 'Body';
+        elements['Air'] = 'Mind';
+        elements['Ether'] = 'Soul';
+
+        /*
+            Console:
+            -------------------------------------------
+            >> elements
+
+            Output:
+            Air: "Mind"
+            Earth: "Body"
+            Ether: "Soul"
+            Fire: "Force"
+            Water: "Emotion"
+            length: 0
+            -------------------------------------------
+        */
+
+        //1.3 - Array Objects
+        //Syntax: let objectName = { 'key' : 'value', };
+        
+        let myElements = 
+        {
+            'Water' : 'Emotion',
+            'Fire' : 'Force',
+            'Earth' : 'Body',
+            'Air' : 'Mind',
+            'Ether' : 'Soul',
+        }
+
+
+        /*
+          objectName.length - doesn't work on objects
+          To get the length of the object use this function:
+          Syntax: Object.keys(objectName).length
+        */
+
+        /*
+            Console:
+            -------------------------------------------
+            >> myElements
+
+            Output:
+            Air: "Mind"
+            Earth: "Body"
+            Ether: "Soul"
+            Fire: "Force"
+            Water: "Emotion"
+
+            >> Object.keys(myElements).length
+            Output: 5
+
+            >> typeof elements
+            Output: object
+
+            >> Array.isArray(elements)
+            Output: true
+
+            >> typeof myElements
+            Output: object
+
+            >> Array.isArray(myElements) 
+            Output: false
+            -------------------------------------------
+        */
+
+        //2. Accessing Array keys and values
+
+        /*
+            Console:
+            -------------------------------------------        
+            >> list[0]
+            Output: 1
+            >> list [4]
+            Output: 5
+
+            >> mixed[0]
+            Output: "The Mass Effect 3"
+            >> mixed[2]
+            Output: 2012
+
+            >> elements['Water']
+            Output: "Emotion"
+
+            >> myElements['Ether']
+            Output: "Soul"
+            -------------------------------------------    
+
+        */
+
+        //3. Looping through Arrays
+
+        //3.1 - for....loop
+
+        //Syntax: for( i=0; i < arrayName.length; i++ ){ }
+
+        /*
+            Console:
+            -------------------------------------------        
+            //for loop only works for numeric arrays
+            >> for (key=0; key<mixed.length; key++){
+                console.log(mixed[key]);
+            }
+            -------------------------------------------    
+        */
+
+        //3.2 - for....in loop
+        
+        //Use for....in loop to loop through objects or any array types
+
+        //Create object cards with numeric properties as keys
+        
+        let cards = 
+        { 
+            1: 'Root Chakra',
+            2: 'Sacral Chakra',
+            3: 'Solar Plexus Chakra',
+            4: 'Heart Chakra',
+            5: 'Throat Chakra',
+            6: 'Third Eye Chakra',
+            7: 'Crown Chakra',
+        }
+
+        //Loop through the array using for....in loop
+        //Syntax: for(let i in arrayName){ }
+        /*
+            Console:
+            -------------------------------------------        
+            >> for (let key in cards){
+                console.log(cards[key]);
+            }
+            -------------------------------------------    
+        */
+
+        //Object colors with string keys without quotes around keys
+        
+        let colors = 
+        {
+            Red : 'Blood',
+            Orange : 'Creativity',
+            Yellow : 'Sun',
+            Green : 'Plant',
+            Blue : 'Ocean',
+            Black : 'Coal',
+            White : Wool,
+                                }
+
+        /*
+            Console:
+            -------------------------------------------          
+            >> for (let key in colors){
+                console.log(colors[key]);
+            }
+            -------------------------------------------
+        */
+
+        /*Using .(dot) notation or square brackets['key'] both
+        work the same for creating new property names
+        Syntax: objectName.propertyName = 'value';
+        Syntax: objectName['propertyName'] = 'value';
+        */
+
+        /*
+            Console:
+            -------------------------------------------          
+            >> colors.Black = 'Cosmos'
+            >> colors['White'] = 'Star'
+            -------------------------------------------
+        */
+
+        </script>
+    </body>
+</html>

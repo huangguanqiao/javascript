@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript Data Types</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+
+        typeof 123; //"number"
+        typeof 1.5; //"number", int or float are both number types
+        typeof 1n; //"bigint"
+        typeof "abc"; //"string"
+        typeof true; //"boolean"
+
+        //"object" - array - use Array.isArray(arrayName) to distinguish object from array
+        typeof [1,2,3]; //"object"
+        typeof {a:1,b:2,c:3}; //"object 
+        
+        typeof undefined; //"undefined"
+        typeof Symbol('foo'); //"symbol"
+        
+        typeof typeof 123; //"string"
+        //"number" (value cannot be expressed as number) though NaN is numeric
+        typeof NaN; 
+
+        Array.isArray( [1,2,3] ); //true
+        Array.isArray( {a:1,b:2,c:3} ); //false
+        
+        typeof null; //"object"
+        
+        typeof class Animal { }; //"function"
+        typeof function howl() {}; //"function"
+
+        </script>
+</body>
+</html>
